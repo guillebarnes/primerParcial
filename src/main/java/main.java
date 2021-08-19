@@ -37,7 +37,7 @@ public class main {
         /*
         Se realiza el seteo de algunas variables para poder realizar pruebas de consola.
         Lo más óptimo sería traerse estas variables desde base de datos.
-        */
+
 
         System.out.println("1) Ingresar como jugador");
         System.out.println("2) Ingresar como club");
@@ -75,7 +75,7 @@ public class main {
                     }
                 }
         }
-
+*/
 
     }
 }
