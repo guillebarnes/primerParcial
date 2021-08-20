@@ -32,6 +32,8 @@ public class Club {
         this.ubicacion = ubicacion;
     }
 
+    public void setCanchas(List<Cancha> canchas) { this.canchas = canchas; }
+
     public Ubicacion getUbicacion() {
         return ubicacion;
     }
