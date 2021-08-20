@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Verificador {
+/*public class Verificador {
 
     @Test
     public void cuatroJugadoresPuedenReservar(){
@@ -65,3 +65,4 @@ public class Verificador {
     }
 
 }
+*/
