@@ -1,3 +1,4 @@
+import domain.dao.Conexion;
 import domain.entities.club.Cancha;
 import domain.entities.club.Club;
 import domain.entities.club.Ubicacion;
@@ -12,7 +13,10 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) throws IOException {
-        
+        //Conexion conexion = new Conexion();
+        //conexion.getConnection();
+        //conexion.desconectar();
+        /*
         JugadorView vistaJugador = new JugadorView();
         Disponible disponible = new Disponible();
 
@@ -29,7 +33,7 @@ public class main {
         Club club = new Club();
         Ubicacion ubicacionClub = new Ubicacion("Buenos Aires", "Moreno", "Guatemala 6681", 1744);
         club.setUbicacion(ubicacionClub);
-        Cancha cancha1 = new Cancha(false, 500);
+
         Cancha cancha2 = new Cancha(true,700);
         club.agregarCancha(cancha1);
         club.agregarCancha(cancha2);

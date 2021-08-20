@@ -6,17 +6,9 @@ public class CanchaDAO {
     private Connection conexion;
 
     public Connection nuevaConexion(){
-        Connection conexion = null;
+        Conexion conn = new Conexion();
 
-        try{
-            String connectionUrl = "jdbc:mysql://localhost:3306/primer_parcial";
-            conexion = DriverManager.getConnection(connectionUrl, "root", "");
-
-            return conexion;
-        } catch(SQLException ex){
-            System.out.println("SQLException: " + ex.getMessage());
-            return null;
-        }
+        return conn.getConnection();
     }
 
     public int insert(boolean techada, double precio){

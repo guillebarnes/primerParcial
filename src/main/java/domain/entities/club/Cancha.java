@@ -16,6 +16,8 @@ public class Cancha {
 
     }
 
+    public int getId() { return this.id; }
+
     public Boolean esTechada() {
         return techada;
     }
