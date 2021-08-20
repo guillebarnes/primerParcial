@@ -11,13 +11,13 @@ public class CanchaDAO {
         return conn.getConnection();
     }
 
-    public int insert(boolean techada, double precio){
-        String consulta = "INSERT INTO cancha (techada, precio) VALUES";
-
+    public int insert(boolean techada, double precio, int id_club){
+        String consulta = "INSERT INTO cancha (techada, precio, id_club) VALUES";
+        //INSERT INTO cancha (techada, precio, id_club) VALUES (1, precio, id_club);
         if(techada)
-            consulta = consulta + " (" + 1 + ", " + precio + ");";
+            consulta = consulta + " (" + 1 + ", " + precio + ", " + id_club + ");";
         else
-            consulta = consulta + " (" + 0 + ", " + precio + ");";
+            consulta = consulta + " (" + 0 + ", " + precio + ", " + id_club + ");";
 
         try {
             this.conexion = nuevaConexion();
