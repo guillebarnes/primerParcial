@@ -1,5 +1,6 @@
 package view;
 
+import domain.dao.CanchaDAO;
 import domain.entities.club.Cancha;
 import domain.entities.club.Club;
 import domain.entities.club.Reserva;
@@ -29,8 +30,8 @@ public class JugadorView {
         String hora = ingresoHora.nextLine();
         Date fechaReserva = new Date(fecha + ", " + hora );
 
-        CanchaView vistaCanchas = new CanchaView();
-        vistaCanchas.ejecutar(club.getCanchas());
+        CanchaView canchaView = new CanchaView();
+        canchaView.ejecutar(club.getCanchas());
 
         System.out.println("Ingrese el numero de cancha del club a la que desea reservar: ");
         Scanner ingresoCancha = new Scanner(System.in);
