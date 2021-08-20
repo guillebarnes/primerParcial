@@ -1,9 +1,13 @@
+import domain.dao.CanchaDAO;
+import domain.dao.ClubesDAO;
 import domain.dao.Conexion;
+import domain.dao.UbicacionDAO;
 import domain.entities.club.Cancha;
 import domain.entities.club.Club;
 import domain.entities.club.Ubicacion;
 import domain.entities.jugador.Jugador;
 import domain.entities.jugador.estados.Disponible;
+import view.CanchaView;
 import view.JugadorView;
 
 import java.io.IOException;
@@ -13,13 +17,26 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) throws IOException {
-        //Conexion conexion = new Conexion();
-        //conexion.getConnection();
-        //conexion.desconectar();
-        /*
-        JugadorView vistaJugador = new JugadorView();
-        Disponible disponible = new Disponible();
+/*
+        ClubesDAO clubesBD = new ClubesDAO();
+        List<Club> clubes = clubesBD.select();
 
+        JugadorView jugadorView = new JugadorView();
+        jugadorView.mostrarClubes(clubes);
+
+        CanchaDAO canchasDB = new CanchaDAO();
+        List<Cancha> canchas = canchasDB.select(2);
+
+        CanchaView canchaView = new CanchaView();
+        canchaView.ejecutar(canchas);
+
+
+
+
+
+ */
+        Disponible disponible = new Disponible();
+        JugadorView jugadorView = new JugadorView();
         Jugador jugador1 = new Jugador("Fernando", "Belasteguin", disponible);
         Jugador jugador2 = new Jugador("Daniel", "Gutierrez", disponible);
         Jugador jugador3 = new Jugador("Franco", "Stupa", disponible);
@@ -30,18 +47,11 @@ public class main {
         jugadores.add(jugador3);
         jugadores.add(jugador4);
 
-        Club club = new Club();
-        Ubicacion ubicacionClub = new Ubicacion("Buenos Aires", "Moreno", "Guatemala 6681", 1744);
-        club.setUbicacion(ubicacionClub);
-
-        Cancha cancha2 = new Cancha(true,700);
-        club.agregarCancha(cancha1);
-        club.agregarCancha(cancha2);
 
         /*
-        Se realiza el seteo de algunas variables para poder realizar pruebas de consola.
-        Lo más óptimo sería traerse estas variables desde base de datos.
-
+        Se realiza el seteo de algunas variables para poder realizar pruebas de consola
+        Ya que no esta implementada la funcionalidad de poder "invitar" jugadores a un partido
+        */
 
         System.out.println("1) Ingresar como jugador");
         System.out.println("2) Ingresar como club");
@@ -57,29 +67,38 @@ public class main {
                     Scanner seleccionJugador = new Scanner(System.in);
                     switch (seleccionJugador.nextInt()) {
                         case 1:
-                            vistaJugador.hacerUnaReserva(jugadores, club);
+                            System.out.println("A que club desea hacer la reserva?");
+                            ClubesDAO clubesBD = new ClubesDAO();
+                            List<Club> clubes = clubesBD.select();
+                            jugadorView.mostrarClubes(clubes);
+                            Scanner ingresoDeClub = new Scanner(System.in);
+                            Club clubSeleccionado = clubes.get(ingresoDeClub.nextInt());
+                            CanchaDAO canchasDB = new CanchaDAO();
+                            List<Cancha> canchas = canchasDB.select(clubSeleccionado.getId());
+                            clubSeleccionado.setCanchas(canchas);
+                            jugadorView.hacerUnaReserva(jugadores, clubSeleccionado);
                             break;
                         case 2:
                             System.out.println("1) Cargar solamente paleta ");
                             System.out.println("2) Cargar conjunto ");
                             Scanner seleccionEquipo = new Scanner(System.in);
                             if(seleccionEquipo.nextInt() == 1) {
-                                vistaJugador.cargarPaleta(jugador1);
+                                jugadorView.cargarPaleta(jugador1);
                                 System.out.println("hola");
                             }
                             if(seleccionEquipo.nextInt() == 2)
-                                vistaJugador.cargarConjunto(jugador1);
+                                jugadorView.cargarConjunto(jugador1);
                             break;
                         case 3:
-                            vistaJugador.informarUnaLesion(jugador1);
+                            jugadorView.informarUnaLesion(jugador1);
                             break;
                         case 4:
-                            vistaJugador.darAltaDeLesion(jugador1);
+                            jugadorView.darAltaDeLesion(jugador1);
                             break;
                     }
                 }
         }
-*/
+
 
     }
 }
