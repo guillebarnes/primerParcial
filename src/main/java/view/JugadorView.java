@@ -102,4 +102,12 @@ public class JugadorView {
         else
             return pagoPresencial;
     }
+    public void mostrarClubes(List<Club> clubes){
+        for(int i=0; i<clubes.size(); i++){
+            System.out.println("Club numero: " + clubes.get(i).getId());
+            System.out.println("Ciudad: " + clubes.get(i).getUbicacion().getCiudad());
+            System.out.println("Direccion: " + clubes.get(i).getUbicacion().getDireccion());
+            System.out.println("----------------------------------------------------------");
+        }
+    }
 }
