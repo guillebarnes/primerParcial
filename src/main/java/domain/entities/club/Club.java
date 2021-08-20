@@ -1,5 +1,6 @@
 package domain.entities.club;
 
+import domain.dao.ClubMapper;
 import domain.entities.club.services.TipoDePago;
 import domain.entities.jugador.Jugador;
 
@@ -9,9 +10,21 @@ import java.util.Date;
 import java.util.List;
 
 public class Club {
+    private int id;
     private Ubicacion ubicacion;
     private List<Reserva> reservas = new ArrayList<>();
     private List<Cancha> canchas = new ArrayList<>();
+
+    public Club(){
+
+    }
+
+    public Club(Ubicacion ubicacion){
+        this.ubicacion = ubicacion;
+
+        ClubMapper clubMapper = new ClubMapper(ubicacion.getId());
+        this.id = clubMapper.insert();
+    }
 
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
