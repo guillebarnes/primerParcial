@@ -10,7 +10,7 @@ public class Conexion {
     private static final String driver ="com.mysql.cj.jdbc.Driver";
     private static final String user = "root";
     private static final String password = "";
-    private static final String url = "jdbc:mysql://localhost:3306/primer_parcial";
+    private static final String url = "jdbc:mysql://localhost:3306/prueba";//cambiar a primer_parcial
 
     public Conexion() {
         conn = null;
@@ -18,9 +18,6 @@ public class Conexion {
             Class.forName(driver);
             //aca nos conectamos
             conn = DriverManager.getConnection(url,user,password);
-            if(conn != null){
-                System.out.println("Conexion establecida");
-            }
         }catch (ClassNotFoundException | SQLException e){
             System.out.println("Error al Conctar" + e);
         }

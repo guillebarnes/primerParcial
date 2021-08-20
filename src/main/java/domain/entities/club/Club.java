@@ -26,6 +26,8 @@ public class Club {
         this.id = clubMapper.insert();
     }
 
+    public void setId(int id) { this.id = id; }
+
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }
@@ -37,6 +39,8 @@ public class Club {
     public List<Cancha> getCanchas(){
         return this.canchas;
     }
+
+    public int getId() { return this.id; }
 
     public void agregarCancha(boolean techada, double precio){
         Cancha oCancha = new Cancha(techada, precio, this.id);

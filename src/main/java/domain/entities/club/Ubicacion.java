@@ -49,5 +49,7 @@ public class Ubicacion {
 
     public int getId() { return this.id; }
 
+    public String getCiudad() { return this.ciudad; }
+
     public String getDireccion() { return this.direccion; }
 }
