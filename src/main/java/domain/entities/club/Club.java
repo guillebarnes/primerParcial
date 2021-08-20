@@ -38,8 +38,9 @@ public class Club {
         return this.canchas;
     }
 
-    public void agregarCancha(Cancha cancha){
-        canchas.add(cancha);
+    public void agregarCancha(boolean techada, double precio){
+        Cancha oCancha = new Cancha(techada, precio, this.id);
+        this.canchas.add(oCancha);
     }
 
 

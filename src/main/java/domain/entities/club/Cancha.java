@@ -7,11 +7,11 @@ public class Cancha {
     private boolean techada;
     private double precio;
 
-    public Cancha(Boolean techada, double precio) {
+    public Cancha(Boolean techada, double precio, int id_club) {
         this.techada = techada;
         this.precio = precio;
 
-        CanchaMapper canchaMapper = new CanchaMapper(this.techada, this.precio);
+        CanchaMapper canchaMapper = new CanchaMapper(this.techada, this.precio, id_club);
         this.id = canchaMapper.insert();
 
     }
