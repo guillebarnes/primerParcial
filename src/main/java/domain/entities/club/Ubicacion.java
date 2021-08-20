@@ -9,6 +9,10 @@ public class Ubicacion {
     private String direccion;
     private int codigoPostal;
 
+    public Ubicacion(){
+
+    }
+
     public Ubicacion(String provincia, String ciudad, String direccion, int codigoPostal) {
         this.provincia = provincia;
         this.ciudad = ciudad;
@@ -19,8 +23,31 @@ public class Ubicacion {
         this.id = ubicacionMapper.insert();
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setCodigoPostal(int codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+
     public int getCodigoPostal() {
         return codigoPostal;
     }
+
     public int getId() { return this.id; }
+
+    public String getDireccion() { return this.direccion; }
 }
