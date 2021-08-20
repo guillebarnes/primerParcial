@@ -22,4 +22,5 @@ public class Ubicacion {
     public int getCodigoPostal() {
         return codigoPostal;
     }
+    public int getId() { return this.id; }
 }
