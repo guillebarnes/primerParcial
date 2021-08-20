@@ -1,6 +1,12 @@
 package domain.dao;
 
+import domain.entities.club.Cancha;
+import domain.entities.club.Club;
+import domain.entities.club.Ubicacion;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CanchaDAO {
     private Connection conexion;
@@ -34,6 +40,32 @@ public class CanchaDAO {
         } catch (SQLException ex){
             System.out.println("Error al insertar");
             return 0;
+        }
+    }
+    public List<Cancha> select(int id_club){
+        String consulta = "SELECT * FROM cancha WHERE id_club = " + id_club + ";";
+
+        try{
+            this.conexion = nuevaConexion();
+
+            Statement stmt = this.conexion.createStatement();
+            ResultSet rs = stmt.executeQuery(consulta);
+            List<Cancha> canchas = new ArrayList<>();
+            UbicacionDAO ubicacionDAO = new UbicacionDAO();
+            while(rs.next()){
+                Cancha oCancha = new Cancha();
+                oCancha.setId(rs.getInt("id_cancha"));
+                oCancha.setTechada(rs.getBoolean("techada"));
+                oCancha.setPrecio(rs.getDouble("precio"));
+
+                canchas.add(oCancha);
+
+            }
+            return canchas;
+
+        } catch (SQLException ex){
+            System.out.println("Error al consultar");
+            return null;
         }
     }
 }
