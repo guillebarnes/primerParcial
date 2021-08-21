@@ -56,18 +56,17 @@ public class JugadorView {
 
     }
     public void cargarPaleta(Jugador jugador){
+
         System.out.println("Ingrese marca de la paleta: ");
         Scanner marcaPaleta = new Scanner(System.in);
         String marcaIngresada = marcaPaleta.nextLine();
+
         System.out.println("Que forma tiene su paleta?");
         System.out.println("1) Redonda ");
         System.out.println("2) Diamante ");
         System.out.println("3) Gota ");
         Scanner formaPaleta = new Scanner(System.in);
         int formaIngresada = formaPaleta.nextInt();
-        System.out.println("Indique cuanto pesa su paleta en grms (aprox)");
-        Scanner pesoPaleta = new Scanner(System.in);
-        int pesoIngresado = pesoPaleta.nextInt();
         Forma forma = Forma.DIAMANTE;
         if(formaIngresada == 1)
             forma = Forma.REDONDA;
@@ -75,10 +74,18 @@ public class JugadorView {
             forma = Forma.DIAMANTE;
         if(formaIngresada == 3)
             forma = Forma.GOTA;
+
+        System.out.println("Indique cuanto pesa su paleta en grms (aprox)");
+        Scanner pesoPaleta = new Scanner(System.in);
+        int pesoIngresado = pesoPaleta.nextInt();
+
         Paleta oPaleta = new Paleta(marcaIngresada, forma , pesoIngresado);
 
         jugador.setConjunto(oPaleta);
-
+        
+        System.out.println("-------------------------------------------------");
+        System.out.println("Su paleta " + marcaIngresada + " fue registrada!");
+        System.out.println("-------------------------------------------------");
     }
     public void informarUnaLesion(Jugador jugador){
         Lesionado lesionado = new Lesionado();
