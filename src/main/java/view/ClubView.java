@@ -1,8 +1,10 @@
 package view;
 
+import domain.dao.CanchaDAO;
 import domain.entities.club.Cancha;
 import domain.entities.club.Club;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ClubView {
@@ -23,5 +25,15 @@ public class ClubView {
         double precio = precioIngresado.nextDouble();
 
         club.agregarCancha(esTechada, precio);
+    }
+
+    public void listarCanchas(Club club){
+        CanchaView canchaView = new CanchaView();
+
+        CanchaDAO canchaBD = new CanchaDAO();
+        List<Cancha> canchas = canchaBD.select(club.getId());
+
+        System.out.println("Sus canchas son: ");
+        canchaView.ejecutar(canchas);
     }
 }
