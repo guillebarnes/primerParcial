@@ -31,6 +31,7 @@ public class JugadorView {
         Date fechaReserva = new Date(fecha + ", " + hora );
 
         CanchaView canchaView = new CanchaView();
+        System.out.println("Seleccione una cancha: ");
         canchaView.ejecutar(club.getCanchas());
 
         System.out.println("Ingrese el numero de cancha del club a la que desea reservar: ");
