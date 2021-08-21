@@ -1,13 +1,11 @@
-import domain.dao.CanchaDAO;
-import domain.dao.ClubesDAO;
-import domain.dao.Conexion;
-import domain.dao.UbicacionDAO;
+import domain.dao.*;
 import domain.entities.club.Cancha;
 import domain.entities.club.Club;
 import domain.entities.club.Ubicacion;
 import domain.entities.jugador.Jugador;
 import domain.entities.jugador.estados.Disponible;
 import view.CanchaView;
+import view.ClubView;
 import view.JugadorView;
 
 import java.io.IOException;
@@ -17,30 +15,15 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) throws IOException {
-/*
-        ClubesDAO clubesBD = new ClubesDAO();
-        List<Club> clubes = clubesBD.select();
-
-        JugadorView jugadorView = new JugadorView();
-        jugadorView.mostrarClubes(clubes);
-
-        CanchaDAO canchasDB = new CanchaDAO();
-        List<Cancha> canchas = canchasDB.select(2);
-
-        CanchaView canchaView = new CanchaView();
-        canchaView.ejecutar(canchas);
-
-
-
-
-
- */
+        ClubDAO clubDAO = new ClubDAO();
         Disponible disponible = new Disponible();
         JugadorView jugadorView = new JugadorView();
+        ClubView clubView = new ClubView();
         Jugador jugador1 = new Jugador("Fernando", "Belasteguin", disponible);
         Jugador jugador2 = new Jugador("Daniel", "Gutierrez", disponible);
         Jugador jugador3 = new Jugador("Franco", "Stupa", disponible);
         Jugador jugador4 = new Jugador("Juan Martin", "Diaz", disponible);
+        Club club1 = clubDAO.select(1);
         List<Jugador> jugadores = new ArrayList<>();
         jugadores.add(jugador1);
         jugadores.add(jugador2);
@@ -82,11 +65,9 @@ public class main {
                             System.out.println("1) Cargar solamente paleta ");
                             System.out.println("2) Cargar conjunto ");
                             Scanner seleccionEquipo = new Scanner(System.in);
-                            if(seleccionEquipo.nextInt() == 1) {
+                            if(seleccionEquipo.nextInt() == 1)
                                 jugadorView.cargarPaleta(jugador1);
-                                System.out.println("hola");
-                            }
-                            if(seleccionEquipo.nextInt() == 2)
+                            else
                                 jugadorView.cargarConjunto(jugador1);
                             break;
                         case 3:
@@ -97,6 +78,17 @@ public class main {
                             break;
                     }
                 }
+            case 2:
+                while(true){
+                    System.out.println("1)Agregar una cancha");
+                    System.out.println("2)Listar mis canchas");
+                    Scanner seleccionClub = new Scanner(System.in);
+                    switch (seleccionClub.nextInt()){
+                        case 1:
+                            clubView.agregarCancha(club1);
+                    }
+                }
+
         }
 
 

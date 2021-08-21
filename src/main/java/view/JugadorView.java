@@ -82,7 +82,7 @@ public class JugadorView {
         Paleta oPaleta = new Paleta(marcaIngresada, forma , pesoIngresado);
 
         jugador.setConjunto(oPaleta);
-        
+
         System.out.println("-------------------------------------------------");
         System.out.println("Su paleta " + marcaIngresada + " fue registrada!");
         System.out.println("-------------------------------------------------");
