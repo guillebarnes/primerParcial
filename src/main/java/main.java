@@ -86,6 +86,9 @@ public class main {
                     switch (seleccionClub.nextInt()){
                         case 1:
                             clubView.agregarCancha(club1);
+                            break;
+                        case 2:
+                            clubView.listarCanchas(club1);
                     }
                 }
 
