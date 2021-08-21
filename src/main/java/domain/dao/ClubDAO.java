@@ -1,5 +1,8 @@
 package domain.dao;
 
+import domain.entities.club.Club;
+import domain.entities.club.Ubicacion;
+
 import java.sql.*;
 
 public class ClubDAO {
@@ -29,6 +32,28 @@ public class ClubDAO {
         }catch(SQLException ex){
             System.out.println("Error al insertar");
             return 0;
+        }
+    }
+    public Club select(int id_club){
+        String consulta = "SELECT * FROM club WHERE id_club = " + id_club;
+
+        try{
+            this.conexion = nuevaConexion();
+
+            Statement stmt = this.conexion.createStatement();
+            ResultSet rs = stmt.executeQuery(consulta);
+
+            if(rs.next()){
+                Club oClub = new Club();
+                oClub.setId(rs.getInt("id_club"));
+
+                return oClub;
+            }
+            else
+                return null;
+        } catch (SQLException ex){
+            System.out.println("Error al consultar");
+            return null;
         }
     }
 }
