@@ -6,7 +6,6 @@ import java.util.List;
 
 public class CanchaView {
     public void ejecutar(List<Cancha> canchas){
-        System.out.println("Seleccione una cancha: ");
         for(int i=0; i<canchas.size(); i++){
             System.out.println("--------------------");
             System.out.println("Cancha nro "+ i);
