@@ -91,9 +91,6 @@ public class main {
                             clubView.listarCanchas(club1);
                     }
                 }
-
         }
-
-
     }
 }
