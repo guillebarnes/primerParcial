@@ -1,30 +1,36 @@
-import domain.dao.*;
+import domain.dao.CanchaDAO;
+import domain.dao.ClubDAO;
+import domain.dao.ClubesDAO;
 import domain.entities.club.Cancha;
 import domain.entities.club.Club;
-import domain.entities.club.Ubicacion;
 import domain.entities.jugador.Jugador;
-import domain.entities.jugador.estados.Disponible;
-import view.CanchaView;
+import domain.entities.jugador.estados.Descansado;
+import domain.validador.*;
+import domain.validador.climaAPI.ServicioClimaWeatherbit;
 import view.ClubView;
 import view.JugadorView;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class main {
+
     public static void main(String[] args) throws IOException {
+
         ClubDAO clubDAO = new ClubDAO();
-        Disponible disponible = new Disponible();
         JugadorView jugadorView = new JugadorView();
         ClubView clubView = new ClubView();
-        Jugador jugador1 = new Jugador("Fernando", "Belasteguin", disponible);
-        Jugador jugador2 = new Jugador("Daniel", "Gutierrez", disponible);
-        Jugador jugador3 = new Jugador("Franco", "Stupa", disponible);
-        Jugador jugador4 = new Jugador("Juan Martin", "Diaz", disponible);
+        Jugador jugador1 = new Jugador("Fernando", "Belasteguin", new Descansado());
+        Jugador jugador2 = new Jugador("Daniel", "Gutierrez", new Descansado());
+        Jugador jugador3 = new Jugador("Franco", "Stupa", new Descansado());
+        Jugador jugador4 = new Jugador("Juan Martin", "Diaz", new Descansado());
         Club club1 = clubDAO.select(1);
         List<Jugador> jugadores = new ArrayList<>();
+
+
         jugadores.add(jugador1);
         jugadores.add(jugador2);
         jugadores.add(jugador3);
@@ -40,13 +46,14 @@ public class main {
         System.out.println("2) Ingresar como club");
         Scanner seleccion = new Scanner(System.in);
 
-        switch (seleccion.nextInt()){
+        switch (seleccion.nextInt()) {
             case 1:
-                while(true){
+                while (true) {
                     System.out.println("1) Realizar una reserva ");
                     System.out.println("2) Cargar conjunto (paleta, zapatillas, ropa) ");
                     System.out.println("3) Informar una lesion ");
-                    System.out.println("4) Dar de alta una lesion ");
+                    System.out.println("4) Notificar Descanso ");/*Nueva funcion*/
+                    System.out.println("5) Notificar Jugo Partido ");/*Nueva funcionalidad*/
                     Scanner seleccionJugador = new Scanner(System.in);
                     switch (seleccionJugador.nextInt()) {
                         case 1:
@@ -65,25 +72,34 @@ public class main {
                             System.out.println("1) Cargar solamente paleta ");
                             System.out.println("2) Cargar conjunto ");
                             Scanner seleccionEquipo = new Scanner(System.in);
-                            if(seleccionEquipo.nextInt() == 1)
+                            if (seleccionEquipo.nextInt() == 1)
                                 jugadorView.cargarPaleta(jugador1);
                             else
                                 jugadorView.cargarConjunto(jugador1);
                             break;
                         case 3:
-                            jugadorView.informarUnaLesion(jugador1);
+                            /*TODO Agregar Scanner leyendo dias, fecha y descripcion*/
+                            int diasReposo = 5;
+                            LocalDate fecha = LocalDate.now();
+                            String descripcionLesion = "Esguice de tobillo";
+                            jugadorView.informarUnaLesion(jugador1, diasReposo, fecha, descripcionLesion);
                             break;
                         case 4:
-                            jugadorView.darAltaDeLesion(jugador1);
+                            //jugadorView.darAltaDeLesion(jugador1);
+                            jugadorView.descansar(jugador1);
+                            break;
+                        case 5:
+                            //jugadorView.darAltaDeLesion(jugador1);
+                            jugadorView.jugar(jugador1);
                             break;
                     }
                 }
             case 2:
-                while(true){
+                while (true) {
                     System.out.println("1)Agregar una cancha");
                     System.out.println("2)Listar mis canchas");
                     Scanner seleccionClub = new Scanner(System.in);
-                    switch (seleccionClub.nextInt()){
+                    switch (seleccionClub.nextInt()) {
                         case 1:
                             clubView.agregarCancha(club1);
                             break;
@@ -93,4 +109,6 @@ public class main {
                 }
         }
     }
+
+
 }

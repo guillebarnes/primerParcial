@@ -1,57 +1,63 @@
 package domain.entities.club;
 
-import domain.dao.ClubMapper;
-import domain.entities.club.services.TipoDePago;
-import domain.entities.jugador.Jugador;
-
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Club {
-    private int id;
+    private AtomicInteger id = new AtomicInteger();
     private Ubicacion ubicacion;
     private List<Reserva> reservas = new ArrayList<>();
     private List<Cancha> canchas = new ArrayList<>();
 
-    public Club(){
+    public Club() {
 
     }
 
-    public Club(Ubicacion ubicacion){
+    public Club(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
 
-        ClubMapper clubMapper = new ClubMapper(ubicacion.getId());
-        this.id = clubMapper.insert();
+        //ClubMapper clubMapper = new ClubMapper(ubicacion.getId());
+        //this.id = clubMapper.insert();
     }
-
-    public void setId(int id) { this.id = id; }
-
-    public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
-    public void setCanchas(List<Cancha> canchas) { this.canchas = canchas; }
 
     public Ubicacion getUbicacion() {
         return ubicacion;
     }
 
-    public List<Cancha> getCanchas(){
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public List<Cancha> getCanchas() {
         return this.canchas;
     }
 
-    public int getId() { return this.id; }
+    public void setCanchas(List<Cancha> canchas) {
+        this.canchas = canchas;
+    }
 
-    public void agregarCancha(boolean techada, double precio){
-        Cancha oCancha = new Cancha(techada, precio, this.id);
+    public int getId() {
+        return this.id.get();
+    }
+
+
+    public void setId(int id) {
+        this.id.set(id);
+
+    }
+
+    public void agregarCancha(boolean techada, double precio) {
+        Cancha oCancha = new Cancha(techada, precio, this);
         this.canchas.add(oCancha);
     }
 
 
-    public void recibirReserva(Date fecha, Cancha cancha, List<Jugador> jugadores, TipoDePago tipoDePago){
-        Reserva oReserva = new Reserva(fecha, cancha, jugadores, tipoDePago);
-        reservas.add(oReserva);
+    public void recibirReserva(Reserva reserva) {
+        this.reservas.add(reserva);
+    }
+
+    public void agregarCancha(Cancha cancha) {
+        this.canchas.add(cancha);
     }
 }

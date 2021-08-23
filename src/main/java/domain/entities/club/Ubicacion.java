@@ -1,15 +1,15 @@
 package domain.entities.club;
 
-import domain.dao.UbicacionMapper;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Ubicacion {
-    private int id;
+    private AtomicInteger id = new AtomicInteger();
     private String provincia;
     private String ciudad;
     private String direccion;
     private int codigoPostal;
 
-    public Ubicacion(){
+    public Ubicacion() {
 
     }
 
@@ -19,37 +19,43 @@ public class Ubicacion {
         this.direccion = direccion;
         this.codigoPostal = codigoPostal;
 
-        UbicacionMapper ubicacionMapper = new UbicacionMapper(this.provincia, this.ciudad, this.direccion, this.codigoPostal);
-        this.id = ubicacionMapper.insert();
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        //UbicacionMapper ubicacionMapper = new UbicacionMapper(this.provincia, this.ciudad, this.direccion, this.codigoPostal);
+        //this.id = ubicacionMapper.insert();
     }
 
     public void setProvincia(String provincia) {
         this.provincia = provincia;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public int getCodigoPostal() {
+        return codigoPostal;
     }
 
     public void setCodigoPostal(int codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
 
-    public int getCodigoPostal() {
-        return codigoPostal;
+    public int getId() {
+        return this.id.get();
     }
 
-    public int getId() { return this.id; }
+    public void setId(int id) {
+        this.id.set(id);
+    }
 
-    public String getCiudad() { return this.ciudad; }
+    public String getCiudad() {
+        return this.ciudad;
+    }
 
-    public String getDireccion() { return this.direccion; }
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getDireccion() {
+        return this.direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 }

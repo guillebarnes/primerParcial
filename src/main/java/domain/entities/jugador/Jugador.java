@@ -9,8 +9,9 @@ public class Jugador {
     private Posicion posicion;
     private Equipo conjunto;
     private Estado estado;
+    private double energia;
 
-
+    /*TODO:Agregar energia*/
     public Jugador(String nombre, String apellido, Estado estado) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -25,15 +26,48 @@ public class Jugador {
         return apellido;
     }
 
-    public void setConjunto(Equipo equipo){
+    public double getEnergia() {
+        return energia;
+    }
+
+    public void setEnergia(double energia) {
+        this.energia = energia;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public void setConjunto(Equipo equipo) {
         this.conjunto = equipo;
     }
 
-    public void cambiarEstado(Estado estado){
+    public void cambiarEstado(Estado estado) {
         this.estado = estado;
     }
 
     public boolean puedeJugar() {
-        return this.estado.puedeJugar();
+        return this.estado.puedeJugar(this);
+    }
+
+    //Funcionalidad
+    public void aumentarEnergia(double cantidad) {
+        this.energia += Math.min(cantidad, 1);
+    }
+
+    public void disminuirEnergia(double cantidad) {
+        this.energia -= Math.max(cantidad, 0);
+    }
+
+    public void descansar() {
+        this.estado.descanso(this);
+    }
+
+    public void jugar() {
+        this.estado.jugarPartido(this);
     }
 }
