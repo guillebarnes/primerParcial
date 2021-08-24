@@ -24,7 +24,7 @@ public class Estado {
         daniel.descansar();
         daniel.descansar();
         daniel.descansar();
-        Assert.assertEquals(0.9, daniel.getEnergia(), 0);
+        Assert.assertEquals(1, daniel.getEnergia(), 0);
     }
 
     @Test
