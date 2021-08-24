@@ -39,8 +39,8 @@ public class main {
         Ya que no esta implementada la funcionalidad de poder "invitar" jugadores a un partido
         */
 
-        System.out.println("1) Ingresar como jugador");
-        System.out.println("2) Ingresar como club");
+        System.out.println("1) Probar como jugador");
+        System.out.println("2) Probar como club");
         Scanner seleccion = new Scanner(System.in);
 
         switch (seleccion.nextInt()) {
@@ -63,6 +63,7 @@ public class main {
                             CanchaDAO canchasDB = new CanchaDAO();
                             List<Cancha> canchas = canchasDB.select(clubSeleccionado.getId());
                             clubSeleccionado.setCanchas(canchas);
+                            canchas.forEach(cancha -> {cancha.setClub(clubSeleccionado);});
                             jugadorView.hacerUnaReserva(jugadores, clubSeleccionado);
                             break;
                         case 2:
@@ -82,7 +83,6 @@ public class main {
                             jugadorView.informarUnaLesion(jugador1, diasReposo, fecha, descripcionLesion);
                             break;
                         case 4:
-                            /*TODO Agregar Scanner leyendo horas descansadas*/
                             //jugadorView.darAltaDeLesion(jugador1);
                             jugadorView.descansar(jugador1);
                             break;
@@ -96,6 +96,7 @@ public class main {
                 while (true) {
                     System.out.println("1)Agregar una cancha");
                     System.out.println("2)Listar mis canchas");
+                    System.out.println("3)Modificar precio de una cancha");
                     Scanner seleccionClub = new Scanner(System.in);
                     switch (seleccionClub.nextInt()) {
                         case 1:
@@ -103,6 +104,20 @@ public class main {
                             break;
                         case 2:
                             clubView.listarCanchas(club1);
+                            break;
+                        case 3:
+                            clubView.listarCanchas(club1);
+                            System.out.println("Seleccione la cancha que quiere modificar el precio: ");
+                            Scanner canchaSeleccionada = new Scanner(System.in);
+                            Cancha canchaNueva = club1.getCanchas().get(canchaSeleccionada.nextInt());
+                            System.out.println("Ingrese el precio nuevo: ");
+                            Scanner precioIngresado = new Scanner(System.in);
+                            double precioNuevo = precioIngresado.nextDouble();
+                            CanchaDAO canchaDAO = new CanchaDAO();
+                            if(canchaDAO.update(canchaNueva.getId(),precioNuevo))
+                                System.out.println("Se modifico el precio exitosamente");
+                            else
+                                System.out.println("Se encontro un error");
                     }
                 }
         }

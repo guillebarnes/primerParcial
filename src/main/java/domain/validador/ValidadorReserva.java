@@ -1,6 +1,7 @@
 package domain.validador;
 
 import domain.entities.club.Reserva;
+import domain.validador.climaAPI.ServicioClimaWeatherbit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,12 @@ public class ValidadorReserva {
 
     public ValidadorReserva() {
         this.criteriosReserva = new ArrayList<>();
+        AdapterClima adapterClima = ServicioClimaWeatherbit.getInstancia();
+
+
+        this.agregarCriterio(new CriterioEstadoJugadores());
+        this.agregarCriterio(new CriterioMinimoJugador(4));
+        this.agregarCriterio(new CriterioClima(adapterClima));
     }
 
     public void agregarCriterio(CriterioReserva criterioReserva) {
