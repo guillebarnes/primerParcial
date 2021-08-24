@@ -25,7 +25,7 @@ public class main {
         Jugador jugador2 = new Jugador("Daniel", "Gutierrez", new Descansado());
         Jugador jugador3 = new Jugador("Franco", "Stupa", new Descansado());
         Jugador jugador4 = new Jugador("Juan Martin", "Diaz", new Descansado());
-        Club club1 = clubDAO.select(1);
+        Club club1 = clubDAO.select(3);
         List<Jugador> jugadores = new ArrayList<>();
 
 
@@ -40,8 +40,8 @@ public class main {
         Ya que no esta implementada la funcionalidad de poder "invitar" jugadores a un partido
         */
 
-        System.out.println("1) Ingresar como jugador");
-        System.out.println("2) Ingresar como club");
+        System.out.println("1) Probar como jugador");
+        System.out.println("2) Probar como club");
         Scanner seleccion = new Scanner(System.in);
 
         switch (seleccion.nextInt()) {
@@ -84,7 +84,6 @@ public class main {
                             jugadorView.informarUnaLesion(jugador1, diasReposo, fecha, descripcionLesion);
                             break;
                         case 4:
-                            /*TODO Agregar Scanner leyendo horas descansadas*/
                             //jugadorView.darAltaDeLesion(jugador1);
                             jugadorView.descansar(jugador1);
                             break;
