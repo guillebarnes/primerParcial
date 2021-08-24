@@ -1,11 +1,13 @@
 package domain.entities.club;
 
+import domain.dao.ClubMapper;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Club {
-    private AtomicInteger id = new AtomicInteger();
+    private int id;
     private Ubicacion ubicacion;
     private List<Reserva> reservas = new ArrayList<>();
     private List<Cancha> canchas = new ArrayList<>();
@@ -17,8 +19,8 @@ public class Club {
     public Club(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
 
-        //ClubMapper clubMapper = new ClubMapper(ubicacion.getId());
-        //this.id = clubMapper.insert();
+        ClubMapper clubMapper = new ClubMapper(ubicacion.getId());
+        this.id = clubMapper.insert();
     }
 
     public Ubicacion getUbicacion() {
@@ -38,14 +40,11 @@ public class Club {
     }
 
     public int getId() {
-        return this.id.get();
+        return this.id;
     }
 
 
-    public void setId(int id) {
-        this.id.set(id);
-
-    }
+    public void setId(int id) { this.id = id; }
 
     public void agregarCancha(boolean techada, double precio) {
         Cancha oCancha = new Cancha(techada, precio, this);
