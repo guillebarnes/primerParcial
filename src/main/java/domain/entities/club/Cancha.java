@@ -43,7 +43,7 @@ public class Cancha {
         return this.id;
     }
 
-
+    public void setId(int id_cancha) { this.id = id_cancha; }
     public Boolean esTechada() {
         return techada;
     }
