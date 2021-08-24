@@ -35,5 +35,7 @@ public class ClubView {
 
         System.out.println("Sus canchas son: ");
         canchaView.ejecutar(canchas);
+
+        club.setCanchas(canchas);
     }
 }

@@ -68,4 +68,18 @@ public class CanchaDAO {
             return null;
         }
     }
+    public boolean update(int id_cancha, double nuevoPrecio){
+        String consulta = "UPDATE cancha SET precio = " + nuevoPrecio + "WHERE id_cancha = " + id_cancha + ";";
+
+        try{
+            this.conexion = nuevaConexion();
+            PreparedStatement stmt = this.conexion.prepareStatement(consulta);
+            stmt.executeUpdate();
+            return true;
+
+        } catch (SQLException ex) {
+            System.out.println("Error al consultar");
+            return false;
+        }
+    }
 }

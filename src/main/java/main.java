@@ -25,7 +25,7 @@ public class main {
         Jugador jugador2 = new Jugador("Daniel", "Gutierrez", new Descansado());
         Jugador jugador3 = new Jugador("Franco", "Stupa", new Descansado());
         Jugador jugador4 = new Jugador("Juan Martin", "Diaz", new Descansado());
-        Club club1 = clubDAO.select(3);
+        Club club1 = clubDAO.select(1);
         List<Jugador> jugadores = new ArrayList<>();
 
 
@@ -97,6 +97,7 @@ public class main {
                 while (true) {
                     System.out.println("1)Agregar una cancha");
                     System.out.println("2)Listar mis canchas");
+                    System.out.println("3)Modificar precio de una cancha");
                     Scanner seleccionClub = new Scanner(System.in);
                     switch (seleccionClub.nextInt()) {
                         case 1:
@@ -104,6 +105,20 @@ public class main {
                             break;
                         case 2:
                             clubView.listarCanchas(club1);
+                            break;
+                        case 3:
+                            clubView.listarCanchas(club1);
+                            System.out.println("Seleccione la cancha que quiere modificar el precio: ");
+                            Scanner canchaSeleccionada = new Scanner(System.in);
+                            Cancha canchaNueva = club1.getCanchas().get(canchaSeleccionada.nextInt());
+                            System.out.println("Ingrese el precio nuevo: ");
+                            Scanner precioIngresado = new Scanner(System.in);
+                            double precioNuevo = precioIngresado.nextDouble();
+                            CanchaDAO canchaDAO = new CanchaDAO();
+                            if(canchaDAO.update(canchaNueva.getId(),precioNuevo))
+                                System.out.println("Se modifico el precio exitosamente");
+                            else
+                                System.out.println("Se encontro un error");
                     }
                 }
         }
