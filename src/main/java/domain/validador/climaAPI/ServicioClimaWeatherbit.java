@@ -17,7 +17,7 @@ public class ServicioClimaWeatherbit implements AdapterClima {
     private final int TORMENTAS = 700;
     private final int PRECIPITACIONES = 900;
     private Retrofit retrofit;
-    private String token = "2d56f11c34aa4ce595c6e520cf152bf3";
+    private String token = "ebc49a0ffb924ba6b9882a405ddc6390";
 
     private ServicioClimaWeatherbit() {
         this.retrofit = new Retrofit.Builder()
