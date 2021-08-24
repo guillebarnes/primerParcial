@@ -1,9 +1,10 @@
 package domain.entities.club;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import domain.dao.CanchaMapper;
+
 
 public class Cancha {
-    private AtomicInteger id = new AtomicInteger();
+    private int id;
     private boolean techada;
     private double precio;
     private Club club;
@@ -17,8 +18,8 @@ public class Cancha {
         this.precio = precio;
         this.club = club;
 
-        //CanchaMapper canchaMapper = new CanchaMapper(this.techada, this.precio, this.club.getId());
-        //this.id = canchaMapper.insert();
+        CanchaMapper canchaMapper = new CanchaMapper(this.techada, this.precio, club.getId());
+        this.id = canchaMapper.insert();
 
     }
 
@@ -39,12 +40,9 @@ public class Cancha {
     }
 
     public int getId() {
-        return this.id.get();
+        return this.id;
     }
 
-    public void setId(int id) {
-        this.id.set(id);
-    }
 
     public Boolean esTechada() {
         return techada;
