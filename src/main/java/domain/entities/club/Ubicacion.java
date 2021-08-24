@@ -1,9 +1,10 @@
 package domain.entities.club;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import domain.dao.UbicacionMapper;
+
 
 public class Ubicacion {
-    private AtomicInteger id = new AtomicInteger();
+    private int id;
     private String provincia;
     private String ciudad;
     private String direccion;
@@ -19,8 +20,8 @@ public class Ubicacion {
         this.direccion = direccion;
         this.codigoPostal = codigoPostal;
 
-        //UbicacionMapper ubicacionMapper = new UbicacionMapper(this.provincia, this.ciudad, this.direccion, this.codigoPostal);
-        //this.id = ubicacionMapper.insert();
+        UbicacionMapper ubicacionMapper = new UbicacionMapper(this.provincia, this.ciudad, this.direccion, this.codigoPostal);
+        this.id = ubicacionMapper.insert();
     }
 
     public void setProvincia(String provincia) {
@@ -36,12 +37,10 @@ public class Ubicacion {
     }
 
     public int getId() {
-        return this.id.get();
+        return this.id;
     }
 
-    public void setId(int id) {
-        this.id.set(id);
-    }
+    public void setId(int id) { this.id = id; }
 
     public String getCiudad() {
         return this.ciudad;
