@@ -64,6 +64,7 @@ public class main {
                             CanchaDAO canchasDB = new CanchaDAO();
                             List<Cancha> canchas = canchasDB.select(clubSeleccionado.getId());
                             clubSeleccionado.setCanchas(canchas);
+                            canchas.forEach(cancha -> {cancha.setClub(clubSeleccionado);});
                             jugadorView.hacerUnaReserva(jugadores, clubSeleccionado);
                             break;
                         case 2:

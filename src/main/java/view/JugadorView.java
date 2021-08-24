@@ -21,16 +21,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class JugadorView {
-    ValidadorReserva validadorReserva;
-
-    private void settearValidadorReserva() {
-        AdapterClima adapterClima = ServicioClimaWeatherbit.getInstancia();
-        ValidadorReserva validadorReserva = new ValidadorReserva();
-
-        validadorReserva.agregarCriterio(new CriterioEstadoJugadores());
-        validadorReserva.agregarCriterio(new CriterioMinimoJugador(4));
-        validadorReserva.agregarCriterio(new CriterioClima(adapterClima));
-    }
+    ValidadorReserva validadorReserva = new ValidadorReserva();
 
     public void hacerUnaReserva(List<Jugador> jugadores, Club club) throws IOException {
         Reserva reserva = new Reserva();
