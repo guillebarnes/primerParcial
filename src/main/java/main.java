@@ -8,7 +8,6 @@ import domain.entities.jugador.estados.Descansado;
 import view.ClubView;
 import view.JugadorView;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

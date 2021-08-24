@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ValidadorReserva {
+
     private List<CriterioReserva> criteriosReserva;
 
     public ValidadorReserva() {
