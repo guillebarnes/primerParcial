@@ -63,7 +63,6 @@ public class Verificador {
         criterioClima.setServicioClima(new ServicioSiempreDespejado());
         Assert.assertTrue(criterioClima.esValida(reserva));
 
-
     }
 
     @Test

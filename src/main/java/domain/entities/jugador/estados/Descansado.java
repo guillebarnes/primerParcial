@@ -3,16 +3,13 @@ package domain.entities.jugador.estados;
 import domain.entities.jugador.Jugador;
 
 public class Descansado implements Estado {
-    private double limite;
     private double consumo;
 
     public Descansado() {
-        this.limite = 0.3;
-        this.consumo = 0.23;
+        this.consumo = 0.15;
     }
 
-    public Descansado(double limite, double consumo) {
-        this.limite = limite;
+    public Descansado(double consumo) {
         this.consumo = consumo;
     }
 
@@ -24,13 +21,14 @@ public class Descansado implements Estado {
     @Override
     public void jugarPartido(Jugador jugador) {
         jugador.disminuirEnergia(consumo);
-        if (jugador.getEnergia() <= limite) {
+        if (jugador.estaCansado())
             jugador.setEstado(new Cansado());
-        }
+
     }
 
     @Override
     public void descanso(Jugador jugador) {
         jugador.aumentarEnergia(consumo);
     }
+
 }

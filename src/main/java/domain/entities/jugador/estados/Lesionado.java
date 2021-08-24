@@ -15,19 +15,45 @@ public class Lesionado implements Estado {
         this.descripcion = descripcion;
     }
 
-    @Override
-    public boolean puedeJugar(Jugador jugador) {
-        return false;
+    public int getDiasReposo() {
+        return diasReposo;
+    }
+
+    public void setDiasReposo(int diasReposo) {
+        this.diasReposo = diasReposo;
+    }
+
+    public LocalDate getFechaLesion() {
+        return fechaLesion;
+    }
+
+    public void setFechaLesion(LocalDate fechaLesion) {
+        this.fechaLesion = fechaLesion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override
-    public void jugarPartido(Jugador jugador) {
+    public boolean puedeJugar(Jugador jugador) {
+        return this.estaRecuperado();
+    }
 
+    @Override
+    public void jugarPartido(Jugador jugador) throws Exception {
+
+        String mensaje = jugador.getNombre() + " " + jugador.getApellido() + " " + "esta lesionado";
+        throw new Exception(mensaje);
     }
 
     @Override
     public void descanso(Jugador jugador) {
-        if (fechaRecuperacion().isBefore(fechaLesion)) {
+        if (this.estaRecuperado()) {
             jugador.setEstado(new Descansado());
         }
         jugador.aumentarEnergia(1);
@@ -35,6 +61,10 @@ public class Lesionado implements Estado {
 
     public LocalDate fechaRecuperacion() {
         return this.fechaLesion.plusDays(diasReposo);
+    }
+
+    private boolean estaRecuperado() {
+        return fechaRecuperacion().isBefore(LocalDate.now());
     }
 }
 

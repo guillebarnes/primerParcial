@@ -135,7 +135,7 @@ public class JugadorView {
 
     }
 
-    public void jugar(Jugador jugador){
+    public void jugar(Jugador jugador) throws Exception {
         Estado estado = jugador.getEstado();
 
         jugador.jugar();

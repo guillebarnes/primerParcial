@@ -1,9 +1,9 @@
 package domain.validador.climaAPI;
 
 import domain.entities.club.Ubicacion;
+import domain.validador.AdapterClima;
 import domain.validador.climaAPI.entities.Clima;
 import domain.validador.climaAPI.entities.Weather;
-import domain.validador.AdapterClima;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -49,6 +49,7 @@ public class ServicioClimaWeatherbit implements AdapterClima {
         Weather clima = null;
         try {
             clima = servicioClima.datosClima(codigoPostalClub).data.get(0).weather;
+
         } catch (IOException e) {
             e.printStackTrace();
         }

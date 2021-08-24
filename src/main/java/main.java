@@ -5,8 +5,6 @@ import domain.entities.club.Cancha;
 import domain.entities.club.Club;
 import domain.entities.jugador.Jugador;
 import domain.entities.jugador.estados.Descansado;
-import domain.validador.*;
-import domain.validador.climaAPI.ServicioClimaWeatherbit;
 import view.ClubView;
 import view.JugadorView;
 
@@ -18,7 +16,7 @@ import java.util.Scanner;
 
 public class main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
         ClubDAO clubDAO = new ClubDAO();
         JugadorView jugadorView = new JugadorView();
@@ -85,6 +83,7 @@ public class main {
                             jugadorView.informarUnaLesion(jugador1, diasReposo, fecha, descripcionLesion);
                             break;
                         case 4:
+                            /*TODO Agregar Scanner leyendo horas descansadas*/
                             //jugadorView.darAltaDeLesion(jugador1);
                             jugadorView.descansar(jugador1);
                             break;
